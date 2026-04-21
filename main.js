@@ -1,0 +1,1 @@
+console.log("Use `npm run dev` to start both /server and /web.");

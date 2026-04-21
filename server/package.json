@@ -1,0 +1,39 @@
+{
+  "name": "student-grades-server",
+  "version": "1.0.0",
+  "description": "HKU student grade portal API",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "otp",
+    "rbac"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "hku-grade-portal": "file:..",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.5.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^8.0.5",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.3.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
+  }
+}

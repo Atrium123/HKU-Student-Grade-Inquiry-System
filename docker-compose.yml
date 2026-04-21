@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:8
+    container_name: hku-grade-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build:
+      context: ./server
+    container_name: hku-grade-server
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      MONGODB_URI: mongodb://mongo:27017/hku_student_portal
+      CORS_ORIGIN: http://localhost:8080
+      ALLOWED_EMAIL_DOMAINS: hku.hk,connect.hku.hk
+      JWT_ACCESS_SECRET: docker_access_secret
+      JWT_REFRESH_SECRET: docker_refresh_secret
+      OTP_HMAC_SECRET: docker_otp_secret
+      EXPOSE_DEBUG_OTP: "true"
+      SMTP_FROM: HKU Grade Portal <no-reply@hku.hk>
+      ADMIN_BOOTSTRAP_EMAIL: admin@hku.hk
+      ADMIN_BOOTSTRAP_NAME: System Admin
+
+  web:
+    build:
+      context: ./web
+    container_name: hku-grade-web
+    restart: unless-stopped
+    depends_on:
+      - server
+    ports:
+      - "8080:80"
+
+volumes:
+  mongo-data:

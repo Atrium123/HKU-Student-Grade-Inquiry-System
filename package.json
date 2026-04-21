@@ -1,0 +1,16 @@
+{
+  "name": "hku-grade-portal",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:web\"",
+    "dev:server": "npm run dev --prefix server",
+    "dev:web": "npm run dev --prefix web",
+    "start:server": "npm run start --prefix server",
+    "build:web": "npm run build --prefix web",
+    "test:server": "npm run test --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
